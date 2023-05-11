@@ -1,2 +1,67 @@
-Amongus
-Susus
+$path = "$($PSScriptRoot)\sussy"
+
+if(-NOT(Test-Path $path)){ 
+    New-Item -Path $path -ItemType Directory
+}
+
+Start-Sleep -Seconds 360 #zeitintervall einstellen!
+$url1 = "https://static.wikia.nocookie.net/jerma-lore/images/e/e3/JermaSus.jpg" #bild umstellen!
+$url2 = "https://i.pinimg.com/474x/85/16/a9/8516a91a54dc5c35f17f3e77ae71401a.jpg" #bild umstellen!
+$url3 = "https://cdn.discordapp.com/attachments/790494698258038784/1103199277318164520/3422AB34-AB9C-4862-8ACC-4C6AE14D699D.jpg" #bild umstellen!
+$url4 = "https://cdn.discordapp.com/attachments/790494698258038784/1103199276990992415/023A25A0-F98F-4E11-B1A4-28AEF6AA6E86.jpg" #bild umstellen!
+$url5 = "https://cdn.discordapp.com/attachments/765227537323261962/1103216504683630592/sascha_vanillasky_extrae.jpg" #bild umstellen!
+$url6 = "https://cdn.discordapp.com/attachments/824015938092269638/1103218521900593172/jojoRaphFight.jpeg" #bild umstellen!
+$url7 = "https://media.discordapp.net/attachments/990966047228190730/990966076202446919/unknown.png?width=415&height=668" #bild umstellen!
+$url8 = "https://media.discordapp.net/attachments/811537648824877056/831418672353771540/unknown.png?width=1131&height=577" #bild umstellen!
+$url9 = "https://cdn.discordapp.com/attachments/811537648824877056/831855476072906752/Unbenannt.png" #bild umstellen!
+$url10 = "https://cdn.discordapp.com/attachments/811537648824877056/831882449864753222/Unbenannt2.png" #bild umstellen!
+
+
+$wc = New-Object System.Net.WebClient
+
+$wc.DownloadFile($url1, $path+'\amongus.png') #bild benennen!
+$wc.DownloadFile($url2, $path+'\gey_black_men.png') #bild benennen!
+$wc.DownloadFile($url3, $path+'\edi.png') #bild benennen!
+$wc.DownloadFile($url4, $path+'\ralph.png') #bild benennen!
+$wc.DownloadFile($url5, $path+'\sasa.png') #bild benennen!
+$wc.DownloadFile($url6, $path+'\jojo_ralph.png') #bild benennen!
+$wc.DownloadFile($url7, $path+'\reid.png') #bild benennen!
+$wc.DownloadFile($url8, $path+'\reid_fett.png') #bild benennen!
+$wc.DownloadFile($url9, $path+'\punz.png') #bild benennen!
+$wc.DownloadFile($url10, $path+'\andi.png') #bild benennen!
+
+
+$pathList = Get-ChildItem -Path $path\* -Include *.png | % {$_.FullName}
+
+
+$setwallpapersrc = @"
+using System.Runtime.InteropServices;
+
+public class Wallpaper
+{
+  public const int SetDesktopWallpaper = 20;
+  public const int UpdateIniFile = 0x01;
+  public const int SendWinIniChange = 0x02;
+  [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+  private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+  public static void SetWallpaper(string path)
+  {
+    SystemParametersInfo(SetDesktopWallpaper, 0, path, UpdateIniFile | SendWinIniChange);
+  }
+}
+"@
+Add-Type -TypeDefinition $setwallpapersrc
+
+$pathList
+
+
+while($true){
+    
+    Start-Sleep -Seconds 10 #zeitintervall einstellen!
+
+    $rand = Get-Random -Maximum $pathList.Length 
+    [Wallpaper]::SetWallpaper($pathList[$rand])
+
+    Start-Sleep -Seconds 3600 #zeitintervall einstellen!
+
+}
