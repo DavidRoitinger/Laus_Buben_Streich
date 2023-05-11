@@ -4,7 +4,7 @@ if(-NOT(Test-Path $path)){
     New-Item -Path $path -ItemType Directory
 }
 
-Start-Sleep -Seconds 360 #zeitintervall einstellen!
+#Start-Sleep -Seconds 360 #zeitintervall einstellen!
 $url1 = "https://static.wikia.nocookie.net/jerma-lore/images/e/e3/JermaSus.jpg" #bild umstellen!
 $url2 = "https://i.pinimg.com/474x/85/16/a9/8516a91a54dc5c35f17f3e77ae71401a.jpg" #bild umstellen!
 $url3 = "https://cdn.discordapp.com/attachments/790494698258038784/1103199277318164520/3422AB34-AB9C-4862-8ACC-4C6AE14D699D.jpg" #bild umstellen!
